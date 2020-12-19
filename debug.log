@@ -1,0 +1,14 @@
+[1104/194202.828:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1106/200410.398:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1114/041539.643:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\Ahad\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\126b5709-2f78-4050-a8b2-06770aae7ce9: The system cannot find the path specified. (0x3)
+[1114/042539.751:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1114/050435.056:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[1114/050435.056:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[1114/050435.072:ERROR:exception_snapshot_win.cc(99)] thread ID 1936 not found in process
+[1114/050435.072:ERROR:exception_snapshot_win.cc(99)] thread ID 5300 not found in process
+[1203/003706.220:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1203/020433.907:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[1203/020433.923:ERROR:exception_snapshot_win.cc(99)] thread ID 4388 not found in process
+[1203/020433.939:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
+[1203/020433.939:ERROR:exception_snapshot_win.cc(99)] thread ID 1992 not found in process
+[1210/212358.497:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)

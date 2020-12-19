@@ -8,6 +8,7 @@
 				<th scope="col">Date</th>
 				<th scope="col">Payment Amount</th>
 				<th scope="col">Payment-Type</th>
+				<th scope="col">Order-ID</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -16,6 +17,7 @@
 				<td>{{ payment.created_at|time }}</td>
 				<td>{{ payment.amount }}</td>
 				<td>{{ payment.payment_type}}</td>
+				<td>{{ payment.order_id}}</td>
 			</tr>
 			<tr>
 				<td v-if="payments.data== 0" colspan="9"><h4 style="color:red; text-align:center;">No Payment Yet!</h4></td>
@@ -47,7 +49,6 @@ export default {
                     Authorization:  `Bearer ${localStorage.getItem('access_token')}`
                 }
              }).then(response => {
-             	console.log(response.data)
              	this.payments = response.data
             }).catch(error => {
                 console.log(error)

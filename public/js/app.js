@@ -3902,6 +3902,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "customerPaymentHistorey",
   data: function data() {
@@ -3920,7 +3922,6 @@ __webpack_require__.r(__webpack_exports__);
           Authorization: "Bearer ".concat(localStorage.getItem('access_token'))
         }
       }).then(function (response) {
-        console.log(response.data);
         _this.payments = response.data;
       })["catch"](function (error) {
         console.log(error);
@@ -5117,8 +5118,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     addPayment: function addPayment() {
       var _this6 = this;
 
-      if (this.payment.payment_type == '' && this.payment.payment_total == '') {
-        toastr.warning('Please Fill up information');
+      if (this.payment.payment_type == '') {
+        toastr.warning('Please Enter the amount type');
+      } else if (this.payment.payment_total == '') {
+        toastr.warning('Please Enter amount of Payment');
+      } else if (isNaN(this.payment.payment_total)) {
+        toastr.warning('Please Enter Valid Formate');
       } else {
         var orderInfo = _objectSpread(_objectSpread({}, this.order), {}, {
           total: this.total,
@@ -89078,7 +89083,9 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(payment.amount))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(payment.payment_type))])
+              _c("td", [_vm._v(_vm._s(payment.payment_type))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(payment.order_id))])
             ])
           }),
           _vm._v(" "),
@@ -89112,7 +89119,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Payment Amount")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Payment-Type")])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Payment-Type")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Order-ID")])
       ])
     ])
   }
@@ -112930,15 +112939,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************************************!*\
   !*** ./resources/js/pages/Customer/customerPaymentHistorey.vue ***!
   \*****************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _customerPaymentHistorey_vue_vue_type_template_id_10e8e68e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./customerPaymentHistorey.vue?vue&type=template&id=10e8e68e&scoped=true& */ "./resources/js/pages/Customer/customerPaymentHistorey.vue?vue&type=template&id=10e8e68e&scoped=true&");
 /* harmony import */ var _customerPaymentHistorey_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./customerPaymentHistorey.vue?vue&type=script&lang=js& */ "./resources/js/pages/Customer/customerPaymentHistorey.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _customerPaymentHistorey_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _customerPaymentHistorey_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -112968,7 +112976,7 @@ component.options.__file = "resources/js/pages/Customer/customerPaymentHistorey.
 /*!******************************************************************************************!*\
   !*** ./resources/js/pages/Customer/customerPaymentHistorey.vue?vue&type=script&lang=js& ***!
   \******************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

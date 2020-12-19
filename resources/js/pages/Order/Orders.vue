@@ -397,8 +397,12 @@ export default {
         },
 
         addPayment(){
-            if( this.payment.payment_type == '' && this.payment.payment_total == ''){
-                toastr.warning('Please Fill up information')
+            if( this.payment.payment_type == ''){
+                toastr.warning('Please Enter the amount type')
+            }else if(this.payment.payment_total == ''){
+                toastr.warning('Please Enter amount of Payment')
+            }else if(isNaN (this.payment.payment_total)){
+                toastr.warning('Please Enter Valid Formate')
             }else{
                 let orderInfo = {...this.order, total:this.total, payment:this.payment, subTotal:this.subTotal}
                 this.$store.dispatch('addOrder', orderInfo).then(response => {

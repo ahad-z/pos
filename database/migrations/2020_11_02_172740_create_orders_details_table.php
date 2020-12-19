@@ -18,9 +18,9 @@ class CreateOrdersDetailsTable extends Migration
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id');
             $table->float('product_subtotal');
-            $table->enum('discount_type',['percent','cash'])->default('percent');
+            $table->string('discount_type');
             $table->float('discount_amount')->default('0');
-            $table->float('quantity');
+            $table->float('qty');
             $table->timestamps();
             $table->foreign('product_id')->references('product_id')->on('products')->onDelete('cascade');
         });

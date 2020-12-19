@@ -17,8 +17,9 @@ class CreateOrdersTable extends Migration
             $table->id('order_id');
             $table->string('invoice_number');
             $table->unsignedBigInteger('cust_id');
-            $table->enum('discount_type',['percent','cash'])->default('percent');
+            $table->string('discount_type');
             $table->float('discount_amount')->default('0');
+            $table->float('sub_total')
             $table->float('total');
             $table->float('due');
             $table->string('status');

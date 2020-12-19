@@ -48,7 +48,7 @@ export default {
             	headers: {
                     Authorization:  `Bearer ${localStorage.getItem('access_token')}`
                 }
-             }).then(response => {
+             }).then(response => {	
              	this.payments = response.data
             }).catch(error => {
                 console.log(error)

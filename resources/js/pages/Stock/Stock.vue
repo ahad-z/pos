@@ -76,7 +76,7 @@
 					<form class="form-group" v-if="error">
                         <div class="form-group">
                             <label for="name">Products</label>
-                                <select id="product_id" class="form-control"   v-model="form.product_id">
+                                <select id="product_id" class="form-control" v-model="form.product_id" @change="getProduct()">
                                     <option value="">---Select Product--</option>
                                     <option :value="product.product_id" v-for="product in getProducts.data">{{ product.product_name }}</option>
                                 </select>
@@ -84,8 +84,16 @@
                         </div>
                         <div class="form-group">
                             <label for="name">Quantity</label>
-                            <input type="text" class="form-control" v-model="form.quantity">
+                            <input type="text" class="form-control" v-model="form.quantity" @focusout="avgPrice()">
                             <small style="color: red">{{ error.quantity}}</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Present Selling Price</label>
+                            <input disabled type="text" class="form-control" v-model="form.present_selling_price">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Avg Selling Price</label>
+                            <input disabled type="text" class="form-control" v-model="form.avg_selling_price">
                         </div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary" @click.prevent="addStock()">Add</button>
@@ -106,9 +114,11 @@ export default {
     	return{
     		form:{
     			product_id:'',
-                quantity:''
-
+                quantity:'',
+                avg_selling_price:'',
+                present_selling_price:'',
     		},
+            existing_qty:'',
     		error:{},
     		selected:[],
     		selectedAll:false,
@@ -217,6 +227,24 @@ export default {
                     })
                 }
             })
+        },
+        getProduct(){
+            let id = this.form.product_id
+            axios.get('http://127.0.0.1:8000/api/get-product/'+id,{
+                headers: {
+                    Authorization:  `Bearer ${localStorage.getItem('access_token')}`
+                }
+            }).then(response => {
+                this.form.present_selling_price = response.data.selling_price
+                this.existing_qty = response.data.qty
+            }).catch( error => {
+                console.log("error")
+            })
+        },
+        avgPrice(){
+            let sum_of_qty = parseInt(this.form.quantity) + parseInt(this.existing_qty)
+            let avg_price = this.form.present_selling_price * sum_of_qty /sum_of_qty
+            this.form.avg_selling_price = avg_price
         }
     },
     mounted(){

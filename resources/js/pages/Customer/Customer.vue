@@ -27,23 +27,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(customer, index) in customers.data">
-                                    <td><input type="checkbox" :value="customer.cust_id" v-model="selected"></td>
-                                    <td>{{ index+1 }}</td>
-                                    <td>{{ customer.cust_name }}</td>
-                                    <td>{{ customer.cust_phone }}</td>
-                                    <td>{{ customer.cust_address }}</td>
-                                    <td>{{ customer.created_at | time  }}</td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <router-link :to="`/edit-customer/${customer.cust_id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
-                                            <button type="submit" class="btn btn-danger btn-sm" @click="deleteCustomer(customer.cust_id)"><i class="fa fa-trash"></i></button>
-                                            <router-link :to="`/order-summary/${customer.cust_id}`" title="To see Customer Order History" class="btn btn-info btn-sm" ><i class="fa fa-history"></i></router-link>
-                                            <router-link :to="`/payment-summary/${customer.cust_id}`" title="To see Customer Payment History" class="btn btn-primary btn-sm" ><i class="fa fa-history"></i></router-link>
+                                <template v-if="customers.data.length > 0">
+                                    <tr v-for="(customer, index) in customers.data">
+                                        <td><input type="checkbox" :value="customer.cust_id" v-model="selected"></td>
+                                        <td>{{ index+1 }}</td>
+                                        <td>{{ customer.cust_name }}</td>
+                                        <td>{{ customer.cust_phone }}</td>
+                                        <td>{{ customer.cust_address }}</td>
+                                        <td>{{ customer.created_at | time  }}</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <router-link :to="`/edit-customer/${customer.cust_id}`" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></router-link>
+                                                <button type="submit" class="btn btn-danger btn-sm" @click="deleteCustomer(customer.cust_id)"><i class="fa fa-trash"></i></button>
+                                                <router-link :to="`/order-summary/${customer.cust_id}`" title="To see Customer Order History" class="btn btn-info btn-sm" ><i class="fa fa-history"></i></router-link>
+                                                <router-link :to="`/payment-summary/${customer.cust_id}`" title="To see Customer Payment History" class="btn btn-primary btn-sm" ><i class="fa fa-history"></i></router-link>
 
-                                        </div>
-                                    </td>
-                                </tr>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </template>
                                 <tr>
                                     <td colspan="6">
                                         <div class="dropdown">
@@ -55,6 +57,9 @@
                                             </div>
                                         </div>
                                     </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="7"><pagination :data="customers" @pagination-change-page="allCustomer"></pagination></td>
                                 </tr>
                                 <tr>
                                     <td v-if="customers.data == 0" colspan="6" style="color: red;text-align: center"><h4>No record available</h4></td>
@@ -103,13 +108,17 @@ export default {
             selected:[],
             selectedAll:false,
             isSelected:false,
+            page: 1,
+            customers:{
+                data: []
+            },
         }
     },
-    computed:{
+    /*computed:{
          customers(){
             return this.$store.getters.allCustomer
         }
-    },
+    },*/
 
     watch:{
         selected:function(data){
@@ -120,8 +129,11 @@ export default {
     },
 
     methods:{
-        allCustomer: function(){
-            this.$store.dispatch('allCustomer')
+        allCustomer: function( page = 1 ){
+            this.page = page;
+            this.$store.dispatch('allCustomer', { page: this.page }).then( response => {
+                this.customers = response.data.data;
+            })
         },
         /*addCustomer: function(){
             let formData = this.form

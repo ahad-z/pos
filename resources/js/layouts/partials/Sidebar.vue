@@ -10,7 +10,7 @@
         <li class="nav-item active">
             <router-link class="nav-link" to="/dashboard">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></router-link>
+                <span>{{ __t("navigation.dashboard") }}</span></router-link>
         </li>
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
@@ -21,109 +21,109 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-tasks"></i>
-                <span>Brand</span>
+                <span>{{ __t("navigation.brand") }}</span>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Mange Your Brand:</h6>
-                    <router-link class="collapse-item" to="/brands" active-class="active">Manage Brand</router-link>
+                    <router-link class="collapse-item" to="/brands" active-class="active">{{ __t("navigation.manage_brand") }}</router-link>
                 </div>
             </div>
         </li>
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoCat" aria-expanded="true" aria-controls="collapseTwoCat">
                 <i class="fas fa-tasks"></i>
-                <span>Category</span>
+                <span>{{ __t("navigation.category") }}</span>
             </a>
             <div id="collapseTwoCat" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Mange Your Category:</h6>
-                    <router-link class="collapse-item" to="/category">Manage Category</router-link>
+                    <h6 class="collapse-header">Manage Your Category:</h6>
+                    <router-link class="collapse-item" to="/category">{{ __t("navigation.manage_category") }}</router-link>
                 </div>
             </div>
         </li>
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoProduct" aria-expanded="true" aria-controls="collapseTwoCat">
                 <i class="fas fa-tasks"></i>
-                <span>Products</span>
+                <span>{{ __t("navigation.products") }}</span>
             </a>
             <div id="collapseTwoProduct" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Mange Your Product:</h6>
-                    <router-link class="collapse-item" to="/product">Manage Product</router-link>
+                    <router-link class="collapse-item" to="/product">{{ __t("navigation.manage_products") }}</router-link>
                 </div>
             </div>
         </li>
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoOrder" aria-expanded="true" aria-controls="collapseTwoCat">
                 <i class="fas fa-tasks"></i>
-                <span>Order</span>
+                <span>{{ __t("navigation.order") }}</span>
             </a>
             <div id="collapseTwoOrder" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Mange Your Order:</h6>
-                    <router-link class="collapse-item" to="/order">Add Order</router-link>
-                    <router-link class="collapse-item" to="/invoice">Invoice</router-link>
+                    <router-link class="collapse-item" to="/order">{{ __t("navigation.add_order") }}</router-link>
+                    <router-link class="collapse-item" to="/invoice">{{ __t("navigation.invoice") }}</router-link>
                 </div>
             </div>
         </li>
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwoProfits" aria-expanded="true" aria-controls="collapseTwoCat">
                 <i class="fas fa-tasks"></i>
-                <span>Profits</span>
+                <span>{{ __t("navigation.profits") }}</span>
             </a>
             <div id="collapseTwoProfits" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header"> Your Profits:</h6>
-                    <a class="collapse-item" href="#">Profits</a>
+                    <a class="collapse-item" href="#">{{ __t("navigation.profits") }}</a>
                 </div>
             </div>
         </li>
          <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUnit" aria-expanded="true" aria-controls="collapseTwoCat">
                 <i class="fas fa-tasks"></i>
-                <span>Unit</span>
+                <span>{{ __t("navigation.unit") }}</span>
             </a>
             <div id="collapseUnit" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header"> Your Unit:</h6>
-                    <router-link class="collapse-item" to="/unit" active-class="active">Unit</router-link>
+                    <router-link class="collapse-item" to="/unit" active-class="active">{{ __t("navigation.unit") }}</router-link>
                 </div>
             </div>
         </li> 
          <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStock" aria-expanded="true" aria-controls="collapseTwoCat">
                 <i class="fas fa-tasks"></i>
-                <span>Stock</span>
+                <span>{{ __t("navigation.stock") }}</span>
             </a>
             <div id="collapseStock" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header"> Your Stock:</h6>
-                    <router-link class="collapse-item" to="/stock" active-class="active">Stock</router-link>
+                    <router-link class="collapse-item" to="/stock" active-class="active">{{ __t("navigation.stock") }}</router-link>
                 </div>
             </div>
         </li>  
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseExpense" aria-expanded="true" aria-controls="collapseTwoCat">
                 <i class="fas fa-tasks"></i>
-                <span>Expense</span>
+                <span>{{ __t("navigation.expense") }}</span>
             </a>
             <div id="collapseExpense" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header"> Your Expense:</h6>
-                    <router-link class="collapse-item" to="/expense" active-class="active">Expense</router-link>
+                    <router-link class="collapse-item" to="/expense" active-class="active">{{ __t("navigation.expense") }}</router-link>
                 </div>
             </div>
         </li>
          <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCustomer" aria-expanded="true" aria-controls="collapseTwoCat">
                 <i class="fas fa-tasks"></i>
-                <span>Customer</span>
+                <span>{{ __t("navigation.customer") }}</span>
             </a>
             <div id="collapseCustomer" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header"> Your Customer:</h6>
-                    <router-link class="collapse-item" to="/customer" active-class="active">Customer</router-link>
+                    <router-link class="collapse-item" to="/customer" active-class="active">{{ __t("navigation.customer") }}</router-link>
                 </div>
             </div>
         </li>

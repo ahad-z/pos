@@ -41,18 +41,20 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr v-for="(brand, index) in brands.data">
-									<td><input type="checkbox" :value="brand.brand_id" v-model="selected"></td>
-									<td>{{ index+1 }}</td>
-									<td>{{ brand.brand_name }}</td>
-									<td>{{ brand.created_at | time  }}</td>
-									<td>
-										<div class="btn-group">
-											<router-link :to="`/edit/${brand.brand_id}`" class="btn btn-info btn-sm">Edit</router-link>
-											<button type="submit" class="btn btn-danger btn-sm" @click="deleteBrand(brand.brand_id)">Delete</button>
-										</div>
-									</td>
-								</tr>
+                                <template v-if="brands.length > 0">
+    								<tr v-for="(brand, index) in brands">
+    									<td><input type="checkbox" :value="brand.brand_id" v-model="selected"></td>
+    									<td>{{ index+1 }}</td>
+    									<td>{{ brand.brand_name }}</td>
+    									<td>{{ brand.created_at | time  }}</td>
+    									<td>
+    										<div class="btn-group">
+    											<router-link :to="`/edit/${brand.brand_id}`" class="btn btn-info btn-sm">Edit</router-link>
+    											<button type="submit" class="btn btn-danger btn-sm" @click="deleteBrand(brand.brand_id)">Delete</button>
+    										</div>
+    									</td>
+    								</tr>
+                                </template>
 								<tr>
 									<td colspan="6">
 										<div class="dropdown">
@@ -115,13 +117,16 @@ export default {
     		selected:[],
     		selectedAll:false,
     		isSelected:false,
-            searchKey:''
+            searchKey:'',
+            brands :{
+                data:[],
+            }
     	}
     },
     computed:{
-    	 brands(){
+    	/*brands(){
             return this.$store.getters.allBrands
-        }
+        }*/
     },
 
     watch:{
@@ -135,13 +140,15 @@ export default {
     methods:{
     	allBrands: function(){
             this.$Progress.start()
-            this.$store.dispatch('allBrands')
+            this.$store.dispatch('allBrands').then( response => {
+                this.brands = response.data.data
+            })
             this.$Progress.finish()
     	},
-
         searchBrand() {
             if(!this.searchKey == ''){
                 this.$store.dispatch('allBrands', {searchKey: this.searchKey}).then(response => {
+                    this.brands = response.data.data
                     this.searchKey = ''
                 })
             }else{

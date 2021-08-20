@@ -7,37 +7,29 @@ import routes from './routes';
 import toastr from 'toastr';
 import Swal from 'sweetalert2';
 import AOS from 'aos';
-
-
-
+import{moment} from "./Filter/filter";
 import DashboardLayout from "./layouts/DashboardLayout";
 import AuthLayout from "./layouts/AuthLayout";
 import ErrorLayout from "./layouts/ErrorLayout";
-/*import invoiceLayout from "./layouts/invoiceLayout";*/
+import VueProgressBar from 'vue-progressbar';
 
-/*import autoCompletePlugin from "syncfusion/ej2-vue-dropdowns"
-Vue.use(autoCompletePlugin)
-*/
-
-import VueProgressBar from 'vue-progressbar'
-
+Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.use(VueProgressBar, {
-  color: 'rgb(143, 255, 199)',
+  color: 'rgb(57 193 123)',
   failedColor: 'red',
-  height: '2px'
-})
-import{moment} from "./Filter/filter"
+  height: '4px'
+});
+window.toastr = toastr;
 
-
-window.toastr = toastr
+Vue.prototype.__t = str => _.get(window.i18n, str, str.split('.').slice(-1).pop())
+window.__t        = str => _.get(window.i18n, str, str.split('.').slice(-1).pop())
 
 const router = new VueRouter({
     routes,
-     mode: 'history'
+    mode: 'history'
 })
 
-
-window.Swal = Swal
+window.Swal = Swal;
 
 const Toast = Swal.mixin({
     toast: true,
@@ -51,15 +43,15 @@ const Toast = Swal.mixin({
     }
 });
 
-window.Toast = Toast
+window.Toast = Toast;
 
 
-Vue.use(VueRouter)
-Vue.mixin(Utils)
+Vue.use(VueRouter);
+Vue.mixin(Utils);
 
-Vue.component('AuthLayout', AuthLayout)
-Vue.component('DashboardLayout', DashboardLayout)
-Vue.component('ErrorLayout', ErrorLayout)
+Vue.component('AuthLayout', AuthLayout);
+Vue.component('DashboardLayout', DashboardLayout);
+Vue.component('ErrorLayout', ErrorLayout);
 /*Vue.component('invoiceLayout', invoiceLayout)*/
 
 /* for Auth check*/
@@ -75,7 +67,7 @@ router.beforeEach((to, from, next) => {
     } else {
         next() // make sure to always call next()!
     }
-})
+});
 
 const app = new Vue({
     el: '#content',

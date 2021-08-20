@@ -8,7 +8,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $limit = request('limit', 10);
+        $users = User::paginate($limit);
         return response([
             'status'  => true,
             'message' => "Data retrieve success!",

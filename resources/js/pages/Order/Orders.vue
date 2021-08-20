@@ -406,9 +406,18 @@ export default {
             }else{
                 let orderInfo = {...this.order, total:this.total, payment:this.payment, subTotal:this.subTotal}
                 this.$store.dispatch('addOrder', orderInfo).then(response => {
-                    let orderId = response.data.order.order_id
-                    window.open("http://127.0.0.1:8000/generate-pdf/"+orderId, "_blank")
-                    this.loadOnce()
+                    if(response.data.status){
+                        let orderId = response.data.order.order_id
+                        window.open("http://127.0.0.1:8000/generate-pdf/"+orderId, "_blank")
+                        this.loadOnce()
+                    }else{
+                        let error_message = response.data.message.product_not_in_stocks
+                        error_message.forEach(function(item, index){
+                            toastr.warning(item + 'Stock Out! try  again with decrese quantiy')
+                        })
+                    }
+                }).catch(error => {
+                    console.log(error)
                 })
             }
             

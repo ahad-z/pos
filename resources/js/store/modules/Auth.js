@@ -31,7 +31,6 @@ export default {
                     context.commit("authInfo", authInfo)
                     resolve(response)
                 }).catch(error => {
-                    console.log(error)
                     reject(error)
                 })
             })

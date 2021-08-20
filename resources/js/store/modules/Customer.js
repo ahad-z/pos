@@ -13,9 +13,15 @@ export default {
        }
     },
     actions: {
-    	allCustomer(context, data){
+    	allCustomer(context, data = null){
+            let queryParams = '';
+            if (data) {
+                queryParams = `?${ $.param(data) }`;
+            }
+            console.log(queryParams)
             return new Promise((resolve, reject) => {
-        		axios.get(`http://127.0.0.1:8000/api/customers`, { params:data, 
+        		axios.get(`http://127.0.0.1:8000/api/customers${queryParams}`,
+                {
                     headers: {
                         Authorization:  `Bearer ${localStorage.getItem('access_token')}`
                     }

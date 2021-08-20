@@ -1,12 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrdersDetail;
 use App\Models\Payment;
 use App\Models\ReturnProduct;
+use App\Models\Stock;
 use Carbon\Carbon;
 use DB;
 
@@ -61,6 +60,24 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
+        $response = [];
+        foreach ($request->products as $product) {
+            if (!Stock::where('product_id', $product['product_id'])->where('quantity', '>=', $product['qty'])->exists()) {
+                $response['product_not_in_stocks'][] = $product['product_name'];
+            }else{
+                $test = Stock::where('product_id', $product['product_id'])->first();
+                $subtraction = $test->quantity - $product['qty'];
+                $test->update([
+                    'quantity' => $subtraction
+                ]);
+            }
+        }
+        if (isset($response['product_not_in_stocks'])) {
+            return response([
+                'status'  => false,
+                'message' => $response
+            ]);
+        }
         if(is_float($request->total)){
             $total_replace =  str_replace('.', '-', $request->total);
         }else{
@@ -93,18 +110,18 @@ class OrderController extends Controller
                 'due'             => $due,
                 'status'          => $status,
     		]);
-
-    		foreach ($request->products as $product ) {
-    			OrdersDetail::create([
-                    'order_id'         => $order->order_id,
-                    'product_id'       => $product['product_id'],
-                    'discount_type'    => $product['discount_type'],
-                    'discount_amount'  => $product['discount'],
-                    'product_subtotal' => $this->productSubTotal($product),
-                    'qty'              => $product['qty']
-    			]);
-    		}
-
+            if(isset($order)){
+                foreach ($request->products as $product ) {
+                    OrdersDetail::create([
+                        'order_id'         => $order->order_id,
+                        'product_id'       => $product['product_id'],
+                        'discount_type'    => $product['discount_type'],
+                        'discount_amount'  => $product['discount'],
+                        'product_subtotal' => $this->productSubTotal($product),
+                        'qty'              => $product['qty']
+                    ]);
+                }
+            }
             $dueAmount = $request->total - $request->payment['payment_total'];
 
             if($dueAmount == 0){

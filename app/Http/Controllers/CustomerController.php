@@ -12,16 +12,19 @@ class CustomerController extends Controller
 {
     public function index(Request $request)
     {
-
         try{
             $customers = new Customer;
-            if(isset( $request->allPhone)){ 
+            if( isset( $request->allPhone) ){
                 $customers = $customers->where('cust_phone', 'LIKE', '%' . $request->get('allPhone'). '%' );
             }    
-             if(isset( $request->cust_phone)){ 
+             if( isset( $request->cust_phone) ){
                 $customers = $customers->where('cust_phone', 'LIKE', '%' . $request->get('cust_phone'). '%' );
             }
-            $customers =  $customers->get();
+            if(  $request->allPhone || $request->cust_phone ){
+                $customers =  $customers->get();
+            }else{
+                $customers =  $customers->paginate(5);
+            }
             return response([
                 'status'  => true,
                 'message' => "Data retrieve success!",

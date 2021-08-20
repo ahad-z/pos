@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('cust_id');
             $table->string('discount_type');
             $table->float('discount_amount')->default('0');
-            $table->float('sub_total')
+            $table->float('sub_total');
             $table->float('total');
             $table->float('due');
             $table->string('status');

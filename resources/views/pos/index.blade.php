@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +17,7 @@
         <component v-bind:is="$route.meta.layout ? $route.meta.layout : 'DashboardLayout'"></component>
         <vue-progress-bar></vue-progress-bar>
     </div>
+    <script src="/lang-{{ app()->getLocale() }}.js"></script>
     <script src="{{ asset('/js/app.js') }}"></script>
 </body>
 </html>

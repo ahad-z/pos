@@ -13,18 +13,24 @@ export default {
        }
     },
     actions: {
-        
-    	allBrands(context, data=null){
-    		axios.get(`http://127.0.0.1:8000/api/brands`,{ 
-                 params: data,
-    			headers: {
-                    Authorization:  `Bearer ${localStorage.getItem('access_token')}`
-                }
-    		}).then( response => {
-    			context.commit("catchBrands", response.data)
-    		})
+    	allBrands(context, data){
+          /*  let queryParams = '';
+            if (data) {
+                queryParams = `?${ $.param(data) }`;
+            }*/
+            return new Promise((resolve, reject) => {
+        		axios.get(`http://127.0.0.1:8000/api/brands`,
+                {
+                    params: data,
+        			headers: {
+                        Authorization:  `Bearer ${localStorage.getItem('access_token')}`
+                    }
+        		}).then( response => {
+        			context.commit("catchBrands", response.data)
+                    resolve(response)
+        		})
+            })
     	},
-
     	addBrand(context, data){
     		return new Promise((resolve, reject) => { 
     			axios.post(`http://127.0.0.1:8000/api/brands`, data , {

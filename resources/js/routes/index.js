@@ -36,16 +36,6 @@ import EditCustomer from "../pages/Customer/Edit"
 import CustomerOrderHistory from "../pages/Customer/customerOrderHistory"
 import CustomerPaymentHistory from "../pages/Customer/customerPaymentHistorey"
 
-
-
-
-
-
-
-
-
-
-
 export default [
     { path: '*', component: NotFound,  meta: {layout: 'ErrorLayout'} },
     { path: '/', component: AuthLogin, meta: {layout: 'AuthLayout', requiresVisitor:true } },
@@ -82,10 +72,6 @@ export default [
 
     { path: '/order-summary/:id', component:CustomerOrderHistory , meta:{ requiresAuth: true } },
     { path: '/payment-summary/:id', component:CustomerPaymentHistory , meta:{ requiresAuth: true } },
-
-
-
-
 
 ]
 
